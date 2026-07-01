@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 describe '投稿のテスト' do
-  let!(:book) { create(:book,title:'hoge',body:'body') }
+  let!(:book) { create(:book, title: 'hoge', body: 'body') }
   describe 'トップ画面(root_path)のテスト' do
-    before do 
+    before do
       visit root_path
     end
     context '表示の確認' do
@@ -27,10 +27,10 @@ describe '投稿のテスト' do
       end
       it "bookのタイトルと感想を表示し、詳細・編集・削除のリンクが表示されているか" do
           (1..5).each do |i|
-            Book.create(title:'hoge'+i.to_s,body:'body'+i.to_s)
+            Book.create(title: 'hoge'+i.to_s, body: 'body'+i.to_s)
           end
           visit books_path
-          Book.all.each_with_index do |book,i|
+          Book.all.each_with_index do |book, i|
             j = i * 3
             expect(page).to have_content book.title
             expect(page).to have_content book.body
@@ -54,8 +54,8 @@ describe '投稿のテスト' do
     end
     context '投稿処理に関するテスト' do
       it '投稿に成功しサクセスメッセージが表示されるか' do
-        fill_in 'book[title]', with: Faker::Lorem.characters(number:5)
-        fill_in 'book[body]', with: Faker::Lorem.characters(number:20)
+        fill_in 'book[title]', with: Faker::Lorem.characters(number: 5)
+        fill_in 'book[body]', with: Faker::Lorem.characters(number: 20)
         click_button 'Create Book'
         expect(page).to have_content 'successfully'
       end
@@ -65,15 +65,15 @@ describe '投稿のテスト' do
         expect(current_path).to eq('/books')
       end
       it '投稿後のリダイレクト先は正しいか' do
-        fill_in 'book[title]', with: Faker::Lorem.characters(number:5)
-        fill_in 'book[body]', with: Faker::Lorem.characters(number:20)
+        fill_in 'book[title]', with: Faker::Lorem.characters(number: 5)
+        fill_in 'book[body]', with: Faker::Lorem.characters(number: 20)
         click_button 'Create Book'
         expect(page).to have_current_path book_path(Book.last)
       end
     end
     context 'book削除のテスト' do
       it 'bookの削除' do
-        expect{ book.destroy }.to change{ Book.count }.by(-1)
+        expect { book.destroy }.to change { Book.count }.by(-1)
         # ※本来はダイアログのテストまで行うがココではデータが削除されることだけをテスト
       end
     end
@@ -90,11 +90,11 @@ describe '投稿のテスト' do
       it 'Editリンクが表示される' do
         edit_link = find_all('a')[0]
         expect(edit_link.native.inner_text).to match(/edit/i)
-			end
+      end
       it 'Backリンクが表示される' do
         back_link = find_all('a')[1]
         expect(back_link.native.inner_text).to match(/back/i)
-			end  
+      end
     end
     context 'リンクの遷移先の確認' do
       it 'Editの遷移先は編集画面か' do
@@ -124,11 +124,11 @@ describe '投稿のテスト' do
       it 'Showリンクが表示される' do
         show_link = find_all('a')[0]
         expect(show_link.native.inner_text).to match(/show/i)
-			end  
+      end
       it 'Backリンクが表示される' do
         back_link = find_all('a')[1]
         expect(back_link.native.inner_text).to match(/back/i)
-			end  
+      end
     end
     context 'リンクの遷移先の確認' do
       it 'Showの遷移先は詳細画面か' do
@@ -144,8 +144,8 @@ describe '投稿のテスト' do
     end
     context '更新処理に関するテスト' do
       it '更新に成功しサクセスメッセージが表示されるか' do
-        fill_in 'book[title]', with: Faker::Lorem.characters(number:5)
-        fill_in 'book[body]', with: Faker::Lorem.characters(number:20)
+        fill_in 'book[title]', with: Faker::Lorem.characters(number: 5)
+        fill_in 'book[body]', with: Faker::Lorem.characters(number: 20)
         click_button 'Update Book'
         expect(page).to have_content 'successfully'
       end
@@ -156,8 +156,8 @@ describe '投稿のテスト' do
         expect(page).to have_content 'error'
       end
       it '更新後のリダイレクト先は正しいか' do
-        fill_in 'book[title]', with: Faker::Lorem.characters(number:5)
-        fill_in 'book[body]', with: Faker::Lorem.characters(number:20)
+        fill_in 'book[title]', with: Faker::Lorem.characters(number: 5)
+        fill_in 'book[body]', with: Faker::Lorem.characters(number: 20)
         click_button 'Update Book'
         expect(page).to have_current_path book_path(book)
       end
