@@ -1,0 +1,79 @@
+/*
+ * This is a manifest file that'll be compiled into application.css.
+ *
+ * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
+ * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
+ * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
+ * depending on specificity.
+ *
+ * Consider organizing styles into separate files for maintainability.
+ */
+ /* 全体のデザイン*/
+ body {
+  background-color: white;
+  color: #333;
+  font-family: Verdana, Arial, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+  margin: 33px;
+}
+/* 見出し*/
+
+h1 {
+  font-size: 26px;
+}
+
+h2 {
+  font-size: 20px;
+}
+
+/* テーブル*/
+table {
+  border-collapse: collapse;
+}
+
+th {
+  padding-bottom: 5px;
+}
+
+td {
+  padding: 5px;
+}
+
+/* リンク*/
+a {
+  color: black;
+}
+
+a:hover {
+  color: white;
+  background-color: black;
+}
+
+/*  入力フォーム*/
+input,textarea {
+  margin-bottom: 10px;
+}
+/* Success Message*/
+.notice {
+  color: green;
+}
+
+/* Error Message */
+
+#error_explanation {
+  border: 2px solid red;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+#error_explanation h2 {
+  background-color: red;
+  color: white;
+  padding: 5px;
+  font-size: 12px;
+}
+
+#error_explanation ul {
+  margin-left: 20px;
+}
